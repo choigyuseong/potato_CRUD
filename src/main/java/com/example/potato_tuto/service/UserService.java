@@ -31,6 +31,7 @@ public class UserService {
         return "회원가입 성공!"; // 성공 시 메시지 반환
     }
 
+    // 특정 사용자 조회 (ID 이용)
     public UserResponseDTO getUserById(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
@@ -55,5 +56,20 @@ public class UserService {
             return "탈퇴에 성공했습니다.";
         }
         return "해당 사용자를 찾을 수 없습니다."; // 사용자가 없으면 삭제 실패
+    }
+
+    // 사용자 업데이트 (Update)
+    public String updateUser(Long id, User user) {
+        Optional<User> existingUser = userRepository.findById(id);
+        if (existingUser.isEmpty()) {
+            return "해당 ID는 존재하지 않습니다."; // 사용자 없을 경우 메시지 반환
+        }
+        User updatedUser = existingUser.get();
+        updatedUser.setName(user.getName());
+        updatedUser.setEmail(user.getEmail());
+        updatedUser.setPassword(user.getPassword());
+
+        userRepository.save(updatedUser);
+        return "회원정보가 업데이트되었습니다.";
     }
 }
