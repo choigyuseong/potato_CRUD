@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController // 다른 어노테이션들을 사용할 수 있게 만든다.
 @RequestMapping("/api/users")
 public class UserController {
 
@@ -23,7 +23,7 @@ public class UserController {
 
     // 회원가입 API (POST)
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user) {
+    public ResponseEntity<String> createUser(@RequestBody User user) { // RequestBody를 통해서 json을 user로 바꾼다.
         String result = userService.createUser(user);
         return ResponseEntity.ok(result); // 성공 / 실패 메시지 그대로 반환
     }

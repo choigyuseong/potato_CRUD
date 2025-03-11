@@ -33,29 +33,29 @@ public class UserService {
 
     // 특정 사용자 조회 (ID 이용)
     public UserResponseDTO getUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return new UserResponseDTO(user.get()); // 해당 사용자 DTO 반환
+        Optional<User> user = userRepository.findById(id); // 특정 id를 가진 엔티티 user 객체에 저장, optional 사용하는 이유는 null을 안전하게 다루는 방법이라서
+        if (user.isEmpty()) { //isPresent 보다 isEmpty가 가독성이 더 좋다.
+            return null;
         }
-        return null; // 사용자가 없으면 null 반환 (Optional 사용시 유효성 체크 필요)
+        return new UserResponseDTO(user.get());
     }
 
     // 전체 사용자 조회
     public List<UserResponseDTO> getAllUsers() {
-        List<User> users = userRepository.findAll(); // 모든 사용자 조회
-        return users.stream()
-                .map(UserResponseDTO::new) // User 객체를 UserResponseDTO로 변환
-                .collect(Collectors.toList());
+        List<User> users = userRepository.findAll(); // 모든 엔티티를  users List 에 저장
+        return users.stream() // java 에서 List를 보다 간편하게 다루기 위해 stream 사용
+                .map(UserResponseDTO::new) // User 객체를 새로운 UserResponseDTO 객체로 변환
+                .collect(Collectors.toList()); // 결과를 List 로 변환
     }
 
     // 회원 삭제 기능 (Delete)
     public String deleteUser(Long id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            userRepository.delete(user.get());
-            return "탈퇴에 성공했습니다.";
+        if (user.isEmpty()) {
+            return "해당 사용자를 찾을 수 없습니다."; // 엔티티가 없으면 삭제 실패
         }
-        return "해당 사용자를 찾을 수 없습니다."; // 사용자가 없으면 삭제 실패
+        userRepository.delete(user.get()); // 값이 있을때 엔티티 삭제
+        return "탈퇴에 성공했습니다.";
     }
 
     // 사용자 업데이트 (Update)

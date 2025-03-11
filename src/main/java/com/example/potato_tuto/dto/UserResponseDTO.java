@@ -1,6 +1,14 @@
 package com.example.potato_tuto.dto;
 
 import com.example.potato_tuto.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor // 기본 생성자 자동 생성
+@AllArgsConstructor // 모든 필드를 포함한 생성자 자동 생성
+@Data // getter, setter 등 자동 생성
+
 
 public class UserResponseDTO {
     private Long id;
@@ -8,8 +16,6 @@ public class UserResponseDTO {
     private String email;
     private String password;
 
-    // 기본 생성자
-    public UserResponseDTO() {}
 
     // User 엔티티를 받아서 DTO를 생성하는 생성자
     public UserResponseDTO(User user) {
@@ -19,36 +25,4 @@ public class UserResponseDTO {
         this.password = user.getPassword();
     }
 
-    // getter, setter
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
