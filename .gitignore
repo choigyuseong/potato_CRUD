@@ -37,5 +37,5 @@ out/
 .vscode/
 
 
-### yml ###
-*.yml/
+### 보안 정보 보호 ###
+src/main/resources/application.yml
