@@ -1,6 +1,6 @@
-package com.example.potato_tuto.dto;
+package com.example.potato_tuto.dto.response;
 
-import com.example.potato_tuto.model.User;
+import com.example.potato_tuto.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
