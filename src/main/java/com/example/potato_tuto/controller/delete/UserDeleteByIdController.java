@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserDeleteByIdController {
 
     @Autowired
-    private UserDeleteByIdService userDeleteService;
+    private UserDeleteByIdService userDeleteByIdService;
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        String result = userDeleteService.deleteUser(id);
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
+        String result = userDeleteByIdService.deleteUserById(id);
         return ResponseEntity.ok(result);
     }
 }

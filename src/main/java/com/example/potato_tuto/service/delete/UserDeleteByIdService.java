@@ -1,11 +1,11 @@
 package com.example.potato_tuto.service.delete;
 
 import com.example.potato_tuto.entity.User;
+import com.example.potato_tuto.exception.UserNotFoundException;
 import com.example.potato_tuto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class UserDeleteByIdService {
@@ -17,13 +17,11 @@ public class UserDeleteByIdService {
         this.userRepository = userRepository;
     }
 
-    public String deleteUser(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            userRepository.delete(user.get());
-            return "탈퇴에 성공했습니다.";
-        } else {
-            return "해당 사용자를 찾을 수 없습니다.";
-        }
+    public String deleteUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("해당 id는 존재하지 않습니다."));
+        userRepository.delete(user);
+        return "id 기준으로 탈퇴에 성공했습니다.";
+
     }
 }
