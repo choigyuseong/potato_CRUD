@@ -15,7 +15,7 @@ public class UserUpdateByIdController {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUserById(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestBody UserUpdateRequestDTO request
     ) {
         String result = userUpdateByIdService.updateUserById(id, request);

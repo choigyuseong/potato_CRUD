@@ -7,14 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/id")
 public class UserReadByIdController {
 
     @Autowired
     private UserReadByIdService userReadByIdService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+    public ResponseEntity<?> getUserById(@PathVariable String id) {
         UserResponseDTO user = userReadByIdService.getUserById(id);
         if (user != null) {
             return ResponseEntity.ok(user);

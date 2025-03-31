@@ -10,8 +10,8 @@ import lombok.*;
 @Builder
 public class User {
 
-    @Id
-    private Long id; // 중복 x,
+    @Id // 필드를 @Id 로 선언하면 기본 메서드 (ex. findById, existsById) 를 제공해준다. + 한번 값을 선언하면 바꾸지 않는다.
+    private String id; // 중복 x,
 
     private String name; // 중복 o
     private String email; // 중복 x

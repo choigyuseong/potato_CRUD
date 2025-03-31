@@ -17,7 +17,7 @@ public class UserDeleteByIdService {
         this.userRepository = userRepository;
     }
 
-    public String deleteUserById(Long id) {
+    public String deleteUserById(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("해당 id는 존재하지 않습니다."));
         userRepository.delete(user);

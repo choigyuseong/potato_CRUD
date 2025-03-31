@@ -6,14 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/id")
 public class UserDeleteByIdController {
 
     @Autowired
     private UserDeleteByIdService userDeleteByIdService;
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
+    public ResponseEntity<String> deleteUserById(@PathVariable String id) {
         String result = userDeleteByIdService.deleteUserById(id);
         return ResponseEntity.ok(result);
     }
