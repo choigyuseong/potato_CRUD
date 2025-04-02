@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserUpdateByIdService {
+public class UserUpdateByUserIdService {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserUpdateByIdService(UserRepository userRepository) {
+    public UserUpdateByUserIdService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public String updateUserById(String userid, UserUpdateRequestDTO request) {
+    public String updateUserByUserId(String userid, UserUpdateRequestDTO request) {
         User existingUser = userRepository.findByUserid(userid)
                 .orElseThrow(() -> new UserNotFoundException("해당 ID는 존재하지 않습니다."));
 
