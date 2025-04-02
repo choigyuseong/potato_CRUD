@@ -18,12 +18,13 @@ public class UserUpdateByIdService {
         this.userRepository = userRepository;
     }
 
-    public String updateUserById(String id, UserUpdateRequestDTO request) {
-        User existingUser = userRepository.findById(id)
+    public String updateUserById(String userid, UserUpdateRequestDTO request) {
+        User existingUser = userRepository.findByUserid(userid)
                 .orElseThrow(() -> new UserNotFoundException("해당 ID는 존재하지 않습니다."));
 
         User updatedUser = User.builder()
                 .id(existingUser.getId())
+                .userid(request.getUserid())
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())

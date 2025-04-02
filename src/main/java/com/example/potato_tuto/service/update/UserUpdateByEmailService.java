@@ -25,6 +25,7 @@ public class UserUpdateByEmailService {
 
         User updatedUser = User.builder() // @Id 로 선언된 id 만 빼고 다른 필드는 update 가능하다.
                 .id(existingUser.getId())
+                .userid(request.getUserid())
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())

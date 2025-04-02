@@ -16,8 +16,8 @@ public class UserReadByIdService {
         this.userRepository = userRepository;
     }
 
-    public UserResponseDTO getUserById(String id) {
-        User user = userRepository.findById(id)
+    public UserResponseDTO getUserById(String userid) {
+        User user = userRepository.findByUserid(userid)
                 .orElseThrow(() -> new UserNotFoundException("해당 ID의 사용자를 찾을 수 없습니다."));
         return new UserResponseDTO(user);
     }

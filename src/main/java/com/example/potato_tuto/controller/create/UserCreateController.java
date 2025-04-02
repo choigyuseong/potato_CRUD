@@ -16,12 +16,12 @@ public class UserCreateController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserCreateRequestDTO request) {
-        User user = new User(
-                request.getId(),
-                request.getName(),
-                request.getEmail(),
-                request.getPassword()
-        );
+        User user = User.builder()
+                .userid(request.getUserid())
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .build();
         String result = userCreateService.createUser(user);
         return ResponseEntity.ok(result);
     }

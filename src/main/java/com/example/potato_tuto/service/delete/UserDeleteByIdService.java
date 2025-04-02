@@ -17,8 +17,8 @@ public class UserDeleteByIdService {
         this.userRepository = userRepository;
     }
 
-    public String deleteUserById(String id) {
-        User user = userRepository.findById(id)
+    public String deleteUserById(String userid) {
+        User user = userRepository.findByUserid(userid)
                 .orElseThrow(() -> new UserNotFoundException("해당 id는 존재하지 않습니다."));
         userRepository.delete(user);
         return "id 기준으로 탈퇴에 성공했습니다.";
