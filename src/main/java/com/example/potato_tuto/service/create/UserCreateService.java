@@ -1,5 +1,6 @@
 package com.example.potato_tuto.service.create;
 
+import com.example.potato_tuto.dto.request.UserCreateRequestDTO;
 import com.example.potato_tuto.entity.User;
 import com.example.potato_tuto.exception.DuplicateUserException;
 import com.example.potato_tuto.repository.UserRepository;
@@ -16,18 +17,21 @@ public class UserCreateService {
         this.userRepository = userRepository;
     }
 
-    public String createUser(User user) {
+    public String createUser(UserCreateRequestDTO request) {
 
-        if (userRepository.existsByUserid(user.getUserid())) {
-            throw new DuplicateUserException("이미 존재하는 ID입니다: " + user.getUserid());
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new DuplicateUserException("이미 등록된 이메일입니다: " + request.getEmail());
         }
 
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new DuplicateUserException("이미 등록된 이메일입니다: " + user.getEmail());
-        }
+        User user = User.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .build();
 
         userRepository.save(user);
         return "회원가입에 성공했습니다.";
     }
+
 }
 

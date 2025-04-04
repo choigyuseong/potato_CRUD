@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 public class UserResponseDTO {
     private Long id;
-    private String userid;
     private String name;
     private String email;
 
@@ -20,7 +19,6 @@ public class UserResponseDTO {
     // User 엔티티를 받아서 DTO를 생성하는 생성자
     public UserResponseDTO(User user) {
         this.id = user.getId();
-        this.userid = user.getUserid();
         this.name = user.getName();
         this.email = user.getEmail();
     }
