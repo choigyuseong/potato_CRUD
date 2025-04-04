@@ -2,7 +2,7 @@ package com.example.potato_tuto.service.create;
 
 import com.example.potato_tuto.dto.User.request.CreateDTO;
 import com.example.potato_tuto.entity.User;
-import com.example.potato_tuto.exception.DuplicateUserException;
+import com.example.potato_tuto.exception.requestError.DuplicateUserException;
 import com.example.potato_tuto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
