@@ -1,6 +1,6 @@
 package com.example.potato_tuto.service.read;
 
-import com.example.potato_tuto.dto.response.UserResponseDTO;
+import com.example.potato_tuto.dto.User.response.ResponseDTO;
 import com.example.potato_tuto.entity.User;
 import com.example.potato_tuto.exception.UserListEmptyException;
 import com.example.potato_tuto.repository.UserRepository;
@@ -19,7 +19,7 @@ public class UserReadAllService {
         this.userRepository = userRepository;
     }
 
-    public List<UserResponseDTO> getAllUsers() {
+    public List<ResponseDTO> getAllUsers() {
         List<User> users = userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
         if (users.isEmpty()) {
@@ -27,7 +27,7 @@ public class UserReadAllService {
         }
 
         return users.stream()
-                .map(UserResponseDTO::new)
+                .map(ResponseDTO::new)
                 .collect(Collectors.toList());
     }
 }

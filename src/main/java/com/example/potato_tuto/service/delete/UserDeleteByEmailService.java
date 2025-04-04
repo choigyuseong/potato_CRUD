@@ -19,10 +19,9 @@ public class UserDeleteByEmailService {
 
     public String deleteUserByEmail(String email) {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("해당 이메일은 존재하지 않습니다."));
+                .orElseThrow(() -> new UserNotFoundException("해당 사용자는 존재하지 않습니다."));
         userRepository.delete(user);
-        return "이메일 기준으로 탈퇴에 성공했습니다.";
+        return "회원 탈퇴에 성공했습니다.";
 
     }
-
 }
