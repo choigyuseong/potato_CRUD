@@ -25,4 +25,8 @@ public class UserCreateController {
         String result = userCreateService.createUser(user);
         return ResponseEntity.ok(result);
     }
+    
+    // UserController 합치기
+    // builder service 로 옮기기
+    //post entity 만들어서 erd cloud 짜오기, 댓글 기능 짜오기 (블로그 느낌)
 }

@@ -12,6 +12,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleDuplicateUser(DuplicateUserException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
+    
+    // header 바꾸기
 
 
 
