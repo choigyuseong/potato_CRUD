@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class User {
 
     @Id
@@ -15,7 +15,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Column(unique = true, nullable = false)
@@ -23,5 +23,10 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    public void updateUser(String username, String password) {
+        this.email = username;
+        this.password = password;
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.example.potato_tuto.service.create;
+package com.example.potato_tuto.service.user.create;
 
 import com.example.potato_tuto.dto.User.request.CreateDTO;
 import com.example.potato_tuto.entity.User;
@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserCreateService {
+public class CreateService {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserCreateService(UserRepository userRepository) {
+    public CreateService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

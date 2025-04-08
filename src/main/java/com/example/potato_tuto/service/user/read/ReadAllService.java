@@ -1,4 +1,4 @@
-package com.example.potato_tuto.service.read;
+package com.example.potato_tuto.service.user.read;
 
 import com.example.potato_tuto.dto.User.response.ResponseDTO;
 import com.example.potato_tuto.entity.User;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserReadAllService {
+public class ReadAllService {
 
     private final UserRepository userRepository;
 
-    public UserReadAllService(UserRepository userRepository) {
+    public ReadAllService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

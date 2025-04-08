@@ -3,11 +3,11 @@ package com.example.potato_tuto.controller;
 import com.example.potato_tuto.dto.User.request.CreateDTO;
 import com.example.potato_tuto.dto.User.request.UpdateDTO;
 import com.example.potato_tuto.dto.User.response.ResponseDTO;
-import com.example.potato_tuto.service.create.UserCreateService;
-import com.example.potato_tuto.service.delete.UserDeleteByEmailService;
-import com.example.potato_tuto.service.read.UserReadAllService;
-import com.example.potato_tuto.service.read.UserReadByEmailService;
-import com.example.potato_tuto.service.update.UserUpdateByEmailService;
+import com.example.potato_tuto.service.user.create.CreateService;
+import com.example.potato_tuto.service.user.delete.DeleteService;
+import com.example.potato_tuto.service.user.read.ReadAllService;
+import com.example.potato_tuto.service.user.read.ReadService;
+import com.example.potato_tuto.service.user.update.UpdateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,17 +16,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    private final UserCreateService userCreateService;
-    private final UserReadAllService userReadAllService;
-    private final UserReadByEmailService userReadByEmailService;
-    private final UserUpdateByEmailService userUpdateByEmailService;
-    private final UserDeleteByEmailService userDeleteByEmailService;
+    private final CreateService userCreateService;
+    private final ReadAllService userReadAllService;
+    private final ReadService userReadByEmailService;
+    private final UpdateService userUpdateByEmailService;
+    private final DeleteService userDeleteByEmailService;
 
-    public UserController(UserCreateService userCreateService,
-                          UserReadAllService userReadAllService,
-                          UserReadByEmailService userReadByEmailService,
-                          UserUpdateByEmailService userUpdateByEmailService,
-                          UserDeleteByEmailService userDeleteByEmailService) {
+    public UserController(CreateService userCreateService,
+                          ReadAllService userReadAllService,
+                          ReadService userReadByEmailService,
+                          UpdateService userUpdateByEmailService,
+                          DeleteService userDeleteByEmailService) {
         this.userCreateService = userCreateService;
         this.userReadAllService = userReadAllService;
         this.userReadByEmailService = userReadByEmailService;
