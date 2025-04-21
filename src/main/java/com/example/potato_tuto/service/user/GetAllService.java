@@ -1,6 +1,6 @@
-package com.example.potato_tuto.service.user.read;
+package com.example.potato_tuto.service.user;
 
-import com.example.potato_tuto.dto.User.response.ResponseDTO;
+import com.example.potato_tuto.dto.User.response.ResponseDto;
 import com.example.potato_tuto.entity.User;
 import com.example.potato_tuto.exception.requestError.UserListEmptyException;
 import com.example.potato_tuto.repository.UserRepository;
@@ -11,15 +11,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ReadAllService {
+public class GetAllService {
 
     private final UserRepository userRepository;
 
-    public ReadAllService(UserRepository userRepository) {
+    public GetAllService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<ResponseDTO> getAllUsers() {
+    public List<ResponseDto> getAllUsers() {
         List<User> users = userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
         if (users.isEmpty()) {
@@ -27,7 +27,7 @@ public class ReadAllService {
         }
 
         return users.stream()
-                .map(ResponseDTO::new)
+                .map(ResponseDto::new)
                 .collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.potato_tuto.service.user.delete;
+package com.example.potato_tuto.service.user;
 
 import com.example.potato_tuto.entity.User;
 import com.example.potato_tuto.exception.requestError.UserNotFoundException;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class DeleteService {
+public class DeleteByEmailService {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public DeleteService(UserRepository userRepository) {
+    public DeleteByEmailService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 @Getter
 
 
-public class ResponseDTO {
+public class ResponseDto {
     private Long id;
     private String name;
     private String email;
 
 
     // User 엔티티를 받아서 DTO를 생성하는 생성자
-    public ResponseDTO(User user) {
+    public ResponseDto(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();

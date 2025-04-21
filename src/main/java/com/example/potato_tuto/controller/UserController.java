@@ -1,13 +1,13 @@
 package com.example.potato_tuto.controller;
 
-import com.example.potato_tuto.dto.User.request.CreateDTO;
-import com.example.potato_tuto.dto.User.request.UpdateDTO;
-import com.example.potato_tuto.dto.User.response.ResponseDTO;
-import com.example.potato_tuto.service.user.create.CreateService;
-import com.example.potato_tuto.service.user.delete.DeleteService;
-import com.example.potato_tuto.service.user.read.ReadAllService;
-import com.example.potato_tuto.service.user.read.ReadService;
-import com.example.potato_tuto.service.user.update.UpdateService;
+import com.example.potato_tuto.dto.User.request.CreateDto;
+import com.example.potato_tuto.dto.User.request.UpdateDto;
+import com.example.potato_tuto.dto.User.response.ResponseDto;
+import com.example.potato_tuto.service.user.CreateService;
+import com.example.potato_tuto.service.user.DeleteByEmailService;
+import com.example.potato_tuto.service.user.GetAllService;
+import com.example.potato_tuto.service.user.GetByEmailService;
+import com.example.potato_tuto.service.user.UpdateByEmailService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,19 +17,19 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
     private final CreateService userCreateService;
-    private final ReadAllService userReadAllService;
-    private final ReadService userReadByEmailService;
-    private final UpdateService userUpdateByEmailService;
-    private final DeleteService userDeleteByEmailService;
+    private final GetAllService userGetAllService;
+    private final GetByEmailService userGetByEmailService;
+    private final UpdateByEmailService userUpdateByEmailService;
+    private final DeleteByEmailService userDeleteByEmailService;
 
     public UserController(CreateService userCreateService,
-                          ReadAllService userReadAllService,
-                          ReadService userReadByEmailService,
-                          UpdateService userUpdateByEmailService,
-                          DeleteService userDeleteByEmailService) {
+                          GetAllService userGetAllService,
+                          GetByEmailService userGetByEmailService,
+                          UpdateByEmailService userUpdateByEmailService,
+                          DeleteByEmailService userDeleteByEmailService) {
         this.userCreateService = userCreateService;
-        this.userReadAllService = userReadAllService;
-        this.userReadByEmailService = userReadByEmailService;
+        this.userGetAllService = userGetAllService;
+        this.userGetByEmailService = userGetByEmailService;
         this.userUpdateByEmailService = userUpdateByEmailService;
         this.userDeleteByEmailService = userDeleteByEmailService;
     }
@@ -37,21 +37,21 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody CreateDTO request) {
+    public ResponseEntity<String> createUser(@RequestBody CreateDto request) {
         String result = userCreateService.createUser(request);
         return ResponseEntity.ok(result);
     }
 
 
     @GetMapping("/all_users")
-    public List<ResponseDTO> getAllUsers() {
-        return userReadAllService.getAllUsers();
+    public List<ResponseDto> getAllUsers() {
+        return userGetAllService.getAllUsers();
     }
 
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<ResponseDTO> getUserByEmail(@PathVariable String email) {
-        ResponseDTO user = userReadByEmailService.getUserByEmail(email);
+    public ResponseEntity<ResponseDto> getUserByEmail(@PathVariable String email) {
+        ResponseDto user = userGetByEmailService.getUserByEmail(email);
         return ResponseEntity.ok(user);
     }
 
@@ -59,7 +59,7 @@ public class UserController {
     @PutMapping("/email/{email}")
     public ResponseEntity<String> updateUserByEmail(
             @PathVariable String email,
-            @RequestBody UpdateDTO request
+            @RequestBody UpdateDto request
     ) {
         String result = userUpdateByEmailService.updateUserByEmail(email, request);
         return ResponseEntity.ok(result);
