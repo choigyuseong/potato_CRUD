@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor // 기본 생성자 자동 생성
-@AllArgsConstructor // 모든 필드를 포함한 생성자 자동 생성
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 
 
@@ -15,8 +15,6 @@ public class ResponseDto {
     private String name;
     private String email;
 
-
-    // User 엔티티를 받아서 DTO를 생성하는 생성자
     public ResponseDto(User user) {
         this.id = user.getId();
         this.name = user.getName();

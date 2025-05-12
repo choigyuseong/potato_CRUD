@@ -7,18 +7,18 @@ import com.example.potato_tuto.entity.User;
 import com.example.potato_tuto.exception.requestError.DuplicateUserException;
 import com.example.potato_tuto.exception.requestError.UserNotFoundException;
 import com.example.potato_tuto.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
-
-    public UserService (UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public String createUser(CreateDto request) {
@@ -27,10 +27,12 @@ public class UserService {
             throw new DuplicateUserException("이미 등록된 이메일입니다.");
         }
 
+        String encodedPw = passwordEncoder.encode(request.getPassword());
+
         User user = User.builder()
                 .name(request.getName())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(encodedPw)
                 .build();
 
         userRepository.save(user);
@@ -55,9 +57,9 @@ public class UserService {
     @Transactional
     public String updateUserByEmail(String email, UpdateDto request) {
         User existingUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("해당 Email은 존재하지 않습니다."));
+                .orElseThrow(() -> new UserNotFoundException("Email 을 다시 확인해주세요."));
 
-        existingUser.updateUser(request.getEmail(), request.getPassword());
+        existingUser.updateUser(request.getName(), request.getPassword());
         userRepository.save(existingUser);
         return "회원 정보가 수정되었습니다.";
     }

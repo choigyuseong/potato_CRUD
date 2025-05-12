@@ -7,6 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateDto {
     private String name;
-    private String email;
     private String password;
 }

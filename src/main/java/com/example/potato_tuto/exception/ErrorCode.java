@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 @ToString
 public enum ErrorCode {
 
-    DUPLICATE_USER_EXCEPTION(HttpStatus.CONFLICT, "1000", "409 CONFLICT"),
-    USER_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "1001", "404 NOT FOUND"),
-    USER_LIST_EMPTY_EXCEPTION(HttpStatus.BAD_REQUEST, "1002", "400 BAD_REQUEST");
+    DUPLICATE_USER_EXCEPTION(HttpStatus.CONFLICT, "1000", "User already exists"),
+    USER_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "1001", "User not found"),
+    USER_LIST_EMPTY_EXCEPTION(HttpStatus.BAD_REQUEST, "1002", "user list is empty"),;
 
     private final HttpStatus httpStatus;
     private final String code;

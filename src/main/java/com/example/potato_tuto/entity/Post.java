@@ -32,7 +32,5 @@ public class Post {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> comments = new ArrayList<>();
-
-
+    private List<Comment> comments = new ArrayList<>();
 }
