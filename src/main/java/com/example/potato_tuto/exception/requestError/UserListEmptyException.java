@@ -5,6 +5,6 @@ import com.example.potato_tuto.exception.ErrorCode;
 public class UserListEmptyException extends BusinessException {
 
     public UserListEmptyException(String message) {
-        super(message, ErrorCode.NOT_FOUND_EXCEPTION);
+        super(message, ErrorCode.USER_LIST_EMPTY_EXCEPTION);
     }
 }

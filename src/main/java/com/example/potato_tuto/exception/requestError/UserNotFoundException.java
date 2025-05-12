@@ -5,6 +5,6 @@ import com.example.potato_tuto.exception.ErrorCode;
 public class UserNotFoundException extends BusinessException {
 
     public UserNotFoundException(String message) {
-        super(message, ErrorCode.NOT_FOUND_EXCEPTION);
+        super(message, ErrorCode.USER_NOT_FOUND_EXCEPTION);
     }
 }

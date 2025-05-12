@@ -5,6 +5,6 @@ import com.example.potato_tuto.exception.ErrorCode;
 public class DuplicateUserException extends BusinessException {
 
     public DuplicateUserException(String message) {
-        super(message, ErrorCode.DUPLICATE_EXCEPTION);
+        super(message, ErrorCode.DUPLICATE_USER_EXCEPTION);
     }
 }

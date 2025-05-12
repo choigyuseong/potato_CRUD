@@ -3,6 +3,8 @@ package com.example.potato_tuto.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,20 +16,23 @@ public class Post {
     private long id;
 
     @Column(nullable = false)
-    private String title; // 글 제목
+    private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String content; // 글 내용
+    private String content;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt; // 작성 시간
+    private LocalDateTime createdAt;
 
     @Column
-    private LocalDateTime updatedAt; // 수정 시간
+    private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> comments = new ArrayList<>();
 
 
 }
