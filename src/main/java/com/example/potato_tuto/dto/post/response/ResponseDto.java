@@ -1,4 +1,4 @@
-package com.example.potato_tuto.dto.Post.response;
+package com.example.potato_tuto.dto.post.response;
 
 import com.example.potato_tuto.entity.Post;
 

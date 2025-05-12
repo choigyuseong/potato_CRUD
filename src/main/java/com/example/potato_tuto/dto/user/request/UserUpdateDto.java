@@ -1,11 +1,11 @@
-package com.example.potato_tuto.dto.User.request;
+package com.example.potato_tuto.dto.user.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UpdateDto {
+public class UserUpdateDto {
     private String name;
     private String password;
 }
