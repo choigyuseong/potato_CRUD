@@ -1,5 +1,7 @@
 package com.example.potato_tuto.security.jwt;
 
+import com.example.potato_tuto.exception.requestError.ExpiredTokenException;
+import com.example.potato_tuto.exception.requestError.InvalidTokenException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,12 +38,13 @@ public class JwtTokenProvider {
 
         return Jwts.builder()
                 .setSubject(email)
+                .claim("type", "access")
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256) // 서명 기반 알고리즘
                 .compact();
     }
-    // AES => 대칭키 암호화 방식
+    // AES => 대칭키 암호화 방식 ( 나중에 도전 )
 
     public String createRefreshToken(Authentication auth) {
         return createRefreshToken(auth.getName());
@@ -68,12 +71,16 @@ public class JwtTokenProvider {
                     .build()
                     .parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date()); // 기간 검증
-        } catch (JwtException | IllegalArgumentException e) {
-            return false; // 형식 검증
+        } catch (ExpiredJwtException e) {
+            throw new ExpiredTokenException("토큰이 만료되었습니다.");
+        } catch (JwtException e) {
+            throw new InvalidTokenException("유효하지 않은 토큰입니다.");
+        } catch (Exception e) {
+            throw new InvalidTokenException("토큰 검증 중 알 수 없는 오류가 발생했습니다.");
         }
     }
 
-    public String getUserEmail(String token) {
+    public String getUserEmailFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()

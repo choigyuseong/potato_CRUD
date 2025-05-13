@@ -26,7 +26,7 @@ public class User {
     private String password;
 
     public void updateUser(String username, String password) {
-        this.email = username;
+        this.name = username;
         this.password = password;
     }
 

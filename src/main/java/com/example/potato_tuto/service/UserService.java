@@ -50,10 +50,15 @@ public class UserService {
     @Transactional
     public UserResponseDto updateUserByEmail(String email, UserUpdateDto request) {
         User existing = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("Email을 다시 확인해주세요."));
+                .orElseThrow(() -> new UserNotFoundException("해당 사용자는 존재하지 않습니다."));
         existing.updateUser(request.getName(),
                 passwordEncoder.encode(request.getPassword()));
         User updated = userRepository.save(existing);
         return new UserResponseDto(updated);
+    }
+
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("해당 사용자는 존재하지 않습니다."));
     }
 }
